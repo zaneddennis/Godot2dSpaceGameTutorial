@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcumsphsq2rsq"]
+
+[ext_resource type="Script" path="res://Ships/ship.gd" id="1_vmerj"]
+[ext_resource type="Texture2D" uid="uid://n81j735a3llh" path="res://Ships/Ship1.png" id="1_yuuxd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obbgv"]
+atlas = ExtResource("1_yuuxd")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay1lu"]
+atlas = ExtResource("1_yuuxd")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4xgb"]
+atlas = ExtResource("1_yuuxd")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hn5gm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obbgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay1lu")
+}],
+"loop": true,
+"name": &"go",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4xgb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Ship" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_vmerj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_hn5gm")
+animation = &"go"

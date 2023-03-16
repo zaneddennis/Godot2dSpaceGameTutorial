@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1lrqjp7nc76o"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_1b45c"]
+[ext_resource type="Texture2D" uid="uid://diuf83d81ui1j" path="res://World/SpaceBackground.png" id="1_42ehc"]
+[ext_resource type="PackedScene" uid="uid://wifi23ws5qvg" path="res://Ships/player.tscn" id="2_xncwa"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_of5b1"]
+resource_name = "Space"
+texture = ExtResource("1_42ehc")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yoyhw"]
+tile_size = Vector2i(512, 512)
+sources/0 = SubResource("TileSetAtlasSource_of5b1")
+
+[node name="Main" type="Node"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1b45c")
+
+[node name="Throttle" type="ProgressBar" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 256.0
+grow_vertical = 0
+max_value = 1.0
+value = 0.5
+
+[node name="Speed" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 72.0
+offset_right = 40.0
+offset_bottom = -36.0
+grow_vertical = 0
+text = "00.00 px/s"
+vertical_alignment = 1
+
+[node name="Background" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = SubResource("TileSet_yoyhw")
+format = 2
+layer_0/tile_data = PackedInt32Array(-1, 0, 0, -65536, 65536, 0, 0, 65536, 0, 65535, 0, 1, -65538, 0, 1, -65537, 65536, 0, -131072, 65536, 1, -131071, 0, 0, -65535, 65536, 0, 1, 65536, 1, 65537, 65536, 0, 65536, 65536, 0, 131071, 0, 0, 131070, 65536, 1, 65534, 0, 0, -2, 65536, 1, -131075, 65536, 0, -131074, 0, 0, -131073, 0, 0, -196608, 65536, 1, -196607, 65536, 1, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 1, 65538, 65536, 0, 131074, 0, 1, 131073, 65536, 0, 131072, 0, 0, 196607, 0, 0, 196606, 0, 0, 196605, 0, 1, 131069, 65536, 1, 65533, 65536, 1, -3, 0, 1, -65539, 65536, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_xncwa")]
+rotation = -1.5708
