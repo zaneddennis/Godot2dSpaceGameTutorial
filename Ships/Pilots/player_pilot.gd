@@ -1,20 +1,21 @@
-extends "res://Ships/ship.gd"
+extends "res://Ships/Pilots/pilot.gd"
 
 
 func _physics_process(delta):
 	HandleInput(delta)
-	super(delta)
 
 
 func HandleInput(delta):
 	if Input.is_action_pressed("throttle_up"):
-		ThrottleUp(delta)
-	if Input.is_action_pressed("throttle_down"):
-		ThrottleDown(delta)
+		throttle.emit(1)
+	elif Input.is_action_pressed("throttle_down"):
+		throttle.emit(-1)
+	else:
+		throttle.emit(0)
 	
 	if Input.is_action_pressed("turn_left"):
-		TurnLeft()
+		turn.emit(-1)
 	elif Input.is_action_pressed("turn_right"):
-		TurnRight()
+		turn.emit(1)
 	else:
-		TurnStraight()
+		turn.emit(0)

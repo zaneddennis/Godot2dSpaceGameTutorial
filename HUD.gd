@@ -1,8 +1,7 @@
 extends Control
 
 
-@onready var main = get_parent().get_parent()
-@onready var player = main.get_node("Player")
+@export var player : Ship
 
 
 func _ready():
@@ -10,5 +9,5 @@ func _ready():
 
 
 func _process(delta):
-	$Throttle.value = player.throttle
+	$Throttle.value = player.speed / player.maxSpeed
 	$Speed.text = "%.2f px/s" % player.velocity.length()
